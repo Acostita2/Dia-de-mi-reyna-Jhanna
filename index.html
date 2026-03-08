@@ -2,173 +2,101 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi Reina Jhanna</title>
+<title>Para Ti ❤️</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+padding:0;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ff9ecb,#c084fc);
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+font-family:Arial;
 overflow:hidden;
-color:white;
-text-align:center;
 }
 
-#contenedor{
-max-width:700px;
-padding:20px;
-}
+/* SOBRE */
 
-h1{
-font-size:48px;
-margin-bottom:10px;
-}
-
-p{
-font-size:22px;
-}
-
-button{
-margin-top:30px;
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:12px;
-background:white;
-color:#c084fc;
+.sobre{
+position:relative;
+width:300px;
+height:200px;
+background:#ff4d6d;
 cursor:pointer;
+transition:transform .6s;
 }
 
-#sorpresa{
-display:none;
-opacity:0;
-transition:opacity 2s;
-}
-
-#sorpresa.mostrar{
-display:block;
-opacity:1;
-}
-
-/* MENSAJES */
-
-.mensaje{
-max-width:600px;
-margin:20px auto;
-font-size:22px;
-line-height:1.5;
-opacity:0;
-animation:aparecer 3s forwards;
-}
-
-.mensaje:nth-of-type(1){
-animation-delay:1s;
-}
-
-.mensaje:nth-of-type(2){
-animation-delay:4s;
-}
-
-@keyframes aparecer{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* CORAZONES CAYENDO */
-
-.corazon{
+.sobre:before{
+content:'';
 position:absolute;
-top:-20px;
-font-size:20px;
-animation:caer linear infinite;
+top:-100px;
+left:0;
+border-left:150px solid transparent;
+border-right:150px solid transparent;
+border-bottom:100px solid #ff4d6d;
+transition:.6s;
 }
 
-@keyframes caer{
-to{ transform:translateY(110vh); }
+.sobre.abierto:before{
+transform:rotateX(180deg);
+top:-100px;
 }
 
 /* CARTA */
 
 .carta{
-width:320px;
-height:220px;
-margin:40px auto;
-position:relative;
-perspective:1000px;
-cursor:pointer;
-}
-
-.tapa{
 position:absolute;
-width:100%;
-height:100%;
-background:#ff7eb9;
-border-radius:10px;
-transform-origin:top;
-transition:transform 1s;
-z-index:2;
-}
-
-.carta.abierta .tapa{
-transform:rotateX(-180deg);
-}
-
-.contenido{
-position:absolute;
-width:100%;
-height:100%;
 background:white;
+width:280px;
+height:360px;
+top:20px;
+left:10px;
 border-radius:10px;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 opacity:0;
-transition:opacity 1s;
+transform:translateY(50px);
+transition:.8s;
+padding:10px;
 }
 
-.carta.abierta .contenido{
+.sobre.abierto .carta{
 opacity:1;
+transform:translateY(-120px);
 }
 
-.contenido img{
-width:130px;
+/* FOTO */
+
+.foto{
+width:260px;
 border-radius:15px;
-margin-bottom:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* TE AMO BONITO */
+/* TEXTO TE AMO */
 
 .teamo{
-font-size:30px;
+font-size:40px;
+color:#ff2e63;
+margin-top:15px;
+animation:latido 1s infinite;
 font-weight:bold;
-background:linear-gradient(45deg,#ff4fa3,#ff0080,#ff4fa3);
--webkit-background-clip:text;
-color:transparent;
-animation:brillar 2s infinite;
+text-shadow:0 0 10px rgba(255,0,100,.6);
 }
 
-@keyframes brillar{
+/* ANIMACION */
+
+@keyframes latido{
+
 0%{transform:scale(1);}
-50%{transform:scale(1.1);}
+50%{transform:scale(1.2);}
 100%{transform:scale(1);}
-}
 
-.final{
-margin-top:25px;
-font-size:38px;
 }
 
 </style>
@@ -176,141 +104,32 @@ font-size:38px;
 
 <body>
 
-<audio id="musica" loop>
+<div class="sobre" onclick="abrirCarta()">
+
+<div class="carta">
+
+<img src="foto.jpg" class="foto">
+
+<div class="teamo">
+Te amo ❤️
+</div>
+
+</div>
+
+</div>
+
+<audio id="musica" autoplay loop>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<div id="contenedor">
-
-<div id="inicio">
-
-<h1>🌸 Feliz Día de la Mujer 🌸</h1>
-<h2>Para mi reina Jhannita</h2>
-
-<p>Tengo algo que hice con todo mi corazón para ti.</p>
-
-<button onclick="mostrarSorpresa()">Presiona aquí</button>
-
-</div>
-
-<div id="sorpresa">
-
-<h1>Te Amo mi Reyna ❤️</h1>
-
-<p class="mensaje">
-Eres una mujer increíble, fuerte, hermosa y con un corazón que ilumina mi vida.
-</p>
-
-<p class="mensaje">
-Prometo cuidar tu corazón, ser tu alegría y tu apoyo en cada momento.
-Eres lo más bonito que tengo y siempre voy a luchar por hacerte feliz.
-Sé que hoy no pudimos vernos, pero quería hacer algo especial para ti,
-porque mereces todo lo bonito del mundo.
-</p>
-
-<div class="carta" onclick="abrirCarta(this)">
-
-<div class="tapa"></div>
-
-<div class="contenido">
-
-<img src="foto.jpg">
-
-<div class="teamo">Te amo ❤️</div>
-
-</div>
-
-</div>
-
-<h1 class="final">Te amo mucho Jhannita ❤️</h1>
-
-</div>
-
-</div>
-
 <script>
 
-function mostrarSorpresa(){
+function abrirCarta(){
 
-document.getElementById("inicio").style.display="none";
-
-let sorpresa=document.getElementById("sorpresa");
-
-sorpresa.style.display="block";
-
-setTimeout(()=>{
-sorpresa.classList.add("mostrar");
-},100);
+document.querySelector(".sobre").classList.toggle("abierto");
 
 document.getElementById("musica").play();
 
-explosionCorazones();
-
-}
-
-/* EXPLOSION CORAZONES */
-
-function explosionCorazones(){
-
-for(let i=0;i<30;i++){
-
-const corazon=document.createElement("div");
-
-corazon.innerHTML="❤️";
-
-corazon.style.position="absolute";
-corazon.style.left="50%";
-corazon.style.top="50%";
-corazon.style.fontSize=(20+Math.random()*20)+"px";
-
-let x=(Math.random()-0.5)*600;
-let y=(Math.random()-0.5)*600;
-
-corazon.style.transition="transform 1s, opacity 1s";
-
-document.body.appendChild(corazon);
-
-setTimeout(()=>{
-corazon.style.transform=`translate(${x}px,${y}px)`;
-corazon.style.opacity="0";
-},50);
-
-setTimeout(()=>{
-corazon.remove();
-},1000);
-
-}
-
-}
-
-/* CORAZONES CAYENDO */
-
-function crearCorazon(){
-
-const corazon=document.createElement("div");
-
-corazon.classList.add("corazon");
-
-corazon.innerHTML="❤️";
-
-corazon.style.left=Math.random()*100+"vw";
-
-corazon.style.animationDuration=(3+Math.random()*4)+"s";
-
-document.body.appendChild(corazon);
-
-setTimeout(()=>{
-corazon.remove();
-},7000);
-
-}
-
-setInterval(crearCorazon,300);
-
-/* ABRIR CARTA */
-
-function abrirCarta(carta){
-carta.classList.toggle("abierta");
 }
 
 </script>
