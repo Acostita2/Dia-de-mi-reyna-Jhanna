@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -22,27 +23,26 @@ overflow:hidden;
 
 .sobre{
 position:relative;
-width:300px;
-height:200px;
+width:340px;
+height:220px;
 background:#ff4d6d;
 cursor:pointer;
-transition:transform .6s;
+transition:.5s;
 }
 
 .sobre:before{
 content:'';
 position:absolute;
-top:-100px;
+top:-110px;
 left:0;
-border-left:150px solid transparent;
-border-right:150px solid transparent;
-border-bottom:100px solid #ff4d6d;
+border-left:170px solid transparent;
+border-right:170px solid transparent;
+border-bottom:110px solid #ff4d6d;
 transition:.6s;
 }
 
 .sobre.abierto:before{
 transform:rotateX(180deg);
-top:-100px;
 }
 
 /* CARTA */
@@ -50,56 +50,57 @@ top:-100px;
 .carta{
 position:absolute;
 background:white;
-width:280px;
-height:360px;
+width:320px;
+height:460px;
 top:20px;
 left:10px;
-border-radius:10px;
+border-radius:15px;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
 opacity:0;
-transform:translateY(50px);
+transform:translateY(60px);
 transition:.8s;
-padding:10px;
+padding:15px;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
 }
 
 .sobre.abierto .carta{
 opacity:1;
-transform:translateY(-120px);
+transform:translateY(-170px);
 }
 
-/* FOTO */
+/* FOTO GRANDE */
 
 .foto{
-width:260px;
+width:100%;
+max-width:320px;
 border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
 /* TEXTO TE AMO */
 
 .teamo{
-font-size:40px;
+font-size:45px;
 color:#ff2e63;
 margin-top:15px;
 animation:latido 1s infinite;
 font-weight:bold;
-text-shadow:0 0 10px rgba(255,0,100,.6);
+text-shadow:0 0 15px rgba(255,0,100,.7);
 }
 
-/* ANIMACION */
+/* ANIMACION LATIDO */
 
 @keyframes latido{
-
 0%{transform:scale(1);}
-50%{transform:scale(1.2);}
+50%{transform:scale(1.3);}
 100%{transform:scale(1);}
-
 }
 
 </style>
+
 </head>
 
 <body>
@@ -118,18 +119,15 @@ Te amo ❤️
 
 </div>
 
-<audio id="musica" autoplay loop>
+<audio id="musica" loop>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
 function abrirCarta(){
-
 document.querySelector(".sobre").classList.toggle("abierto");
-
 document.getElementById("musica").play();
-
 }
 
 </script>
